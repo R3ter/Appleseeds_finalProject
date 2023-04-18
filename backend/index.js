@@ -1,17 +1,54 @@
-import puppeteer from "puppeteer";
+import express from "express";
+import axios from "axios";
+import bodyParser from "body-parser";
+import captureWebsite from "capture-website";
+import multer from "multer";
 import fs from "fs";
-import compareImages from "./func/compareImages.js";
+import path from "path";
+const app = express();
+const port = 3000;
 
-const takeScreenshot = async (url, outputFilePath) => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url);
-  const screenshotBuffer = await page.screenshot();
-  await browser.close();
-  fs.writeFileSync("screenshots/" + outputFilePath, screenshotBuffer);
-  return "screenshots/" + outputFilePath;
+const storage = multer.memoryStorage();
+const upload = multer({ dest: "uploads/", storage });
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.post("/", upload.array("images"), async (req, res) => {
+  captureShot(req.files);
+  const data = { image1: req.files[0].buffer, folder: req.files };
+  // const compared = await axios({
+  //   method: "post",
+  //   url: "http://127.0.0.1:5000/process_data",
+  //   data: JSON.stringify(data),
+  //   headers: {
+  //     "Content-type": "application/json",
+  //   },
+  // });
+  // res.send(compared.data);
+  res.send("adw");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+const captureShot = async (files) => {
+  const directoryPath = path.resolve(path.join("path"));
+
+  files.forEach(async (file) => {
+    console.log(file);
+    if (path.extname(file.fieldname) === ".html") {
+      const screenshotPath = `${directoryPath}/${path.basename(
+        file,
+        ".html"
+      )}.png`;
+      const image = await captureWebsite.buffer("<h1>waleed</h1>");
+      
+    }
+  });
 };
-
-const image = takeScreenshot("https://www.google.com", "www.google.com.png");
-
-compareImages(image, image);

@@ -1,0 +1,43 @@
+.thirdSection {
+  width: 100%;
+  height: 100%;
+}
+.thirdImage * {
+  color: white;
+}
+.thirdImage {
+  background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/1a5ba4b1-efd8-40bc-8b6d-e81bf8223e37/bvlatuR/std/2560x1440/Model-3-Performance-Hero-Desktop-LHD");
+  width: 100%;
+  height: 83%;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.FooterThird .iconText {
+  margin: 17px;
+}
+.FooterThird {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.Performance ul {
+  display: flex;
+  justify-content: center;
+}
+.FooterThird li > * {
+  margin: 8;
+}
+.FooterThird li p {
+  margin: 0;
+  max-width: 300px;
+  font-size: 13px;
+}
+
+.footerTitle {
+  font-size: 25px;
+}
