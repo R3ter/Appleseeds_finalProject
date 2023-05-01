@@ -30,6 +30,8 @@ def compareImage(first, second):
         first = Image.open(io.BytesIO(first))
         second = Image.open(io.BytesIO(second))
 
+        first = first.resize(second.size)
+
         first = np.asarray(first)
         second = np.asarray(second)
 
@@ -52,14 +54,20 @@ def compareImage(first, second):
 
         for c in contours:
             area = cv2.contourArea(c)
-            if area > 5:
+            if area > 100:
                 x, y, w, h = cv2.boundingRect(c)
                 cv2.rectangle(first, (x, y), (x + w, y + h), (36, 255, 12), 2)
                 cv2.rectangle(second, (x, y), (x + w, y + h), (36, 255, 12), 2)
                 cv2.drawContours(mask, [c], 0, (0, 255, 0), -1)
                 cv2.drawContours(filled, [c], 0, (0, 255, 0), -1)
+        cv2.imshow('first', first)
+        cv2.imshow('second', second)
+        cv2.imshow('diff', diff)
+        cv2.imshow('mask', mask)
+        cv2.imshow('filled', filled)
+        cv2.waitKey()
+        return {'result': io.BytesIO(first.tobytes()).getvalue().decode('latin-1')}
 
-        return json.dumps(diff, cls=NumpyEncoder)
     except Exception as e:
         print("Unexpected error:", e)
         return "Internal Error "
@@ -71,6 +79,7 @@ def process_data():
         data = request.get_json()
         image1 = data.get('image1')
         image2 = data.get('image2')
+        print(not image1, not image2)
         if (not image1 or not image2):
             return "images are not provided"
         return {'result': compareImage(image1, image2)}

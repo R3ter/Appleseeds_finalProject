@@ -1,0 +1,98 @@
+.secondSection {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.secondSection * {
+  color: black;
+  font-family: teslaFont;
+  font-size: 14;
+  font-weight: 570;
+}
+.descripImage {
+  margin: 0;
+  width: 80%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/ea753653-02a2-4206-aac5-82a33a0a245d/bvlatuR/std/2880x1800/model-3-hero-a-desktop");
+}
+.description h1 {
+  font-size: 28;
+  margin-top: 0;
+}
+.description h2 {
+  font-size: 20;
+  color: gray;
+  margin: 0;
+}
+.description {
+  width: 350px;
+  float: right;
+  margin-top: 50px;
+}
+.description p {
+  margin: 0;
+}
+
+.description h3 {
+  color: gray;
+  line-height: 1.5;
+  margin: 0;
+  /* margin-top: 10; */
+  margin-bottom: 15;
+
+  margin-right: 15;
+}
+button.SimpleBlack {
+  background-color: white;
+  border: 3px black solid;
+  border-radius: 5px;
+  padding: 65px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  transition-duration: 0.5s;
+}
+button.SimpleBlack:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.AddBag {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.AddBag p {
+  display: inline-block;
+  text-align: center;
+  height: 100%;
+  margin: 10;
+}
+.AddBag button {
+  background-color: white;
+  border-radius: 360px;
+  padding: 10px;
+  cursor: pointer;
+
+  border-width: 3;
+}
+.AddBag:hover > button {
+  background-color: black;
+  transition-duration: 0.2s;
+}
+.AddBag:hover > button > svg {
+  fill: white;
+  transition-duration: 0.2s;
+}
+.FooterSecond * {
+  height: 100%;
+}
+.FooterSecond {
+  display: flex;
+  position: absolute;
+  bottom: 45;
+  right: 25;
+}
